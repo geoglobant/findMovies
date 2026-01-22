@@ -13,7 +13,9 @@
 	<key>CFBundleName</key>
 	<string>$(PRODUCT_NAME)</string>
 	<key>OMDB_API_KEY</key>
-	<string>YOUR_OMDB_API_KEY</string>
+	<string>d6d4e440</string>
+	<key>OMDB_POSTER_API_KEY</key>
+	<string>d6d4e440</string>
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>

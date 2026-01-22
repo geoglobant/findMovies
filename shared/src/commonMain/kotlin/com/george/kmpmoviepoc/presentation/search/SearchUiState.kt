@@ -8,3 +8,5 @@ data class SearchUiState(
     val movies: List<Movie> = emptyList(),
     val errorMessage: String? = null
 )
+
+fun defaultSearchUiState(): SearchUiState = SearchUiState()

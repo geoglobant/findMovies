@@ -13,6 +13,7 @@ val localProperties = Properties().apply {
     }
 }
 val omdbApiKey = localProperties.getProperty("OMDB_API_KEY") ?: ""
+val omdbPosterApiKey = localProperties.getProperty("OMDB_POSTER_API_KEY") ?: ""
 
 android {
     namespace = "com.george.kmpmoviepoc.android"
@@ -24,6 +25,7 @@ android {
         versionCode = 1
         versionName = "1.0"
         buildConfigField("String", "OMDB_API_KEY", "\"$omdbApiKey\"")
+        buildConfigField("String", "OMDB_POSTER_API_KEY", "\"$omdbPosterApiKey\"")
     }
     buildFeatures {
         compose = true

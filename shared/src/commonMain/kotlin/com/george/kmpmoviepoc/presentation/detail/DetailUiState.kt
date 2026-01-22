@@ -7,3 +7,5 @@ data class DetailUiState(
     val movie: MovieDetail? = null,
     val errorMessage: String? = null
 )
+
+fun defaultDetailUiState(): DetailUiState = DetailUiState()

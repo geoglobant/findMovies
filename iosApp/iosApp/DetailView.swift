@@ -9,13 +9,13 @@ final class DetailViewModelWrapper: ObservableObject {
 
     init(appModule: AppModule) {
         viewModel = appModule.provideDetailViewModel()
-        state = viewModel.stateFlow.value
+        state = viewModel.stateFlow.value ?? DetailUiStateKt.defaultDetailUiState()
     }
 
     func start() {
         guard closeable == nil else { return }
         closeable = viewModel.stateFlow.watch { [weak self] newState in
-            self?.state = newState
+            self?.state = newState ?? DetailUiStateKt.defaultDetailUiState()
         }
     }
 

@@ -15,6 +15,8 @@ class AppModule(
     apiKey: String,
     private val dispatcherProvider: DispatcherProvider = DefaultDispatcherProvider()
 ) {
+    constructor(apiKey: String) : this(apiKey, DefaultDispatcherProvider())
+
     private val httpClient = provideHttpClient()
     private val api = OmdbApi(httpClient, apiKey)
     private val repository: MovieRepository = MovieRepositoryImpl(api)

@@ -45,16 +45,17 @@ fun DetailScreen(
                 color = MaterialTheme.colorScheme.error
             )
             state.movie != null -> {
-                val movie = state.movie
-                Text(text = movie.title, style = MaterialTheme.typography.headlineSmall)
-                Text(
-                    text = "${movie.year} • ${movie.runtime}",
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-                Text(text = movie.genre)
-                Text(text = "Director: ${movie.director}")
-                Text(text = "IMDb: ${movie.imdbRating}")
-                Text(text = movie.plot)
+                state.movie?.let { movie ->
+                    Text(text = movie.title, style = MaterialTheme.typography.headlineSmall)
+                    Text(
+                        text = "${movie.year} • ${movie.runtime}",
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    Text(text = movie.genre)
+                    Text(text = "Director: ${movie.director}")
+                    Text(text = "IMDb: ${movie.imdbRating}")
+                    Text(text = movie.plot)
+                }
             }
         }
     }

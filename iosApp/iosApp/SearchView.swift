@@ -9,13 +9,13 @@ final class SearchViewModelWrapper: ObservableObject {
 
     init(appModule: AppModule) {
         viewModel = appModule.provideSearchViewModel()
-        state = viewModel.stateFlow.value
+        state = viewModel.stateFlow.value ?? SearchUiStateKt.defaultSearchUiState()
     }
 
     func start() {
         guard closeable == nil else { return }
         closeable = viewModel.stateFlow.watch { [weak self] newState in
-            self?.state = newState
+            self?.state = newState ?? SearchUiStateKt.defaultSearchUiState()
         }
     }
 
@@ -42,7 +42,7 @@ struct SearchView: View {
     @ObservedObject var viewModel: SearchViewModelWrapper
 
     private var movieCount: Int {
-        Int(viewModel.state.movies.size)
+        viewModel.state.movies.count
     }
 
     var body: some View {
@@ -80,7 +80,7 @@ struct SearchView: View {
 
             List {
                 ForEach(0..<movieCount, id: \.self) { index in
-                    let movie = viewModel.state.movies.get(index: Int32(index)) as! Movie
+                    let movie = viewModel.state.movies[index]
                     NavigationLink(value: movie.imdbId) {
                         VStack(alignment: .leading, spacing: 4) {
                             Text(movie.title)

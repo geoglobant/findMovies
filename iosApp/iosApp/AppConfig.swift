@@ -5,4 +5,9 @@ enum AppConfig {
         let value = Bundle.main.infoDictionary?["OMDB_API_KEY"] as? String
         return value ?? "YOUR_OMDB_API_KEY"
     }
+
+    static var omdbPosterApiKey: String {
+        let value = Bundle.main.infoDictionary?["OMDB_POSTER_API_KEY"] as? String
+        return value ?? "YOUR_OMDB_API_KEY"
+    }
 }
