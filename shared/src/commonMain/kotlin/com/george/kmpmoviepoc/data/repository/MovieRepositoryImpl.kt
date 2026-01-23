@@ -18,6 +18,7 @@ class MovieRepositoryImpl(
             if (!response.isSuccess()) {
                 AppResult.Error(response.error ?: "No results found.")
             } else {
+                // O(n): map over the result list to build domain models.
                 AppResult.Success(response.search.map { it.toDomain() })
             }
         } catch (exception: Exception) {

@@ -79,14 +79,28 @@ struct SearchView: View {
             }
 
             List {
+                // O(n): renders each movie row.
                 ForEach(0..<movieCount, id: \.self) { index in
                     let movie = viewModel.state.movies[index]
                     NavigationLink(value: movie.imdbId) {
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text(movie.title)
-                                .font(.headline)
-                            Text("\(movie.year) • \(movie.type)")
-                                .foregroundColor(.secondary)
+                        HStack(spacing: 12) {
+                            let url = movie.posterUrl.flatMap { URL(string: $0) } ?? posterUrl(imdbId: movie.imdbId, height: 240)
+                            AsyncImage(url: url) { image in
+                                image
+                                    .resizable()
+                                    .scaledToFill()
+                            } placeholder: {
+                                Color.gray.opacity(0.2)
+                            }
+                            .frame(width: 72, height: 108)
+                            .clipped()
+
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(movie.title)
+                                    .font(.headline)
+                                Text("\(movie.year) • \(movie.type)")
+                                    .foregroundColor(.secondary)
+                            }
                         }
                     }
                 }

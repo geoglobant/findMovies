@@ -27,6 +27,7 @@ class DetailViewModel(
 
         scope.launch {
             _state.update { it.copy(isLoading = true, movie = null, errorMessage = null) }
+            // O(1) local: delegates the heavy work to the use case.
             val result = withContext(ioDispatcher) { getMovieDetail(imdbId) }
             when (result) {
                 is AppResult.Success -> _state.update {

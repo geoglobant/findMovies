@@ -53,6 +53,14 @@ struct DetailView: View {
                     Text(errorMessage)
                         .foregroundColor(.red)
                 } else if let movie = viewModel.state.movie {
+                    let url = movie.posterUrl.flatMap { URL(string: $0) } ?? posterUrl(imdbId: movie.imdbId, height: 900)
+                    AsyncImage(url: url) { image in
+                        image
+                            .resizable()
+                            .scaledToFit()
+                    } placeholder: {
+                        Color.gray.opacity(0.2)
+                    }
                     Text(movie.title)
                         .font(.title2)
                     Text("\(movie.year) • \(movie.runtime)")

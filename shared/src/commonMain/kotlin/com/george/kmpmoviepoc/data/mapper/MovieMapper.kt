@@ -6,6 +6,7 @@ import com.george.kmpmoviepoc.domain.model.Movie
 import com.george.kmpmoviepoc.domain.model.MovieDetail
 
 fun OmdbMovieDto.toDomain(): Movie {
+    // O(1): field-to-field mapping.
     return Movie(
         imdbId = imdbId,
         title = title,
@@ -16,6 +17,7 @@ fun OmdbMovieDto.toDomain(): Movie {
 }
 
 fun OmdbDetailResponse.toDomain(): MovieDetail {
+    // O(1): field-to-field mapping.
     return MovieDetail(
         imdbId = imdbId,
         title = title,

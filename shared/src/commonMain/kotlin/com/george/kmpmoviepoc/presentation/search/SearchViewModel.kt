@@ -32,6 +32,7 @@ class SearchViewModel(
 
         scope.launch {
             _state.update { it.copy(isLoading = true, errorMessage = null) }
+            // O(1) local: delegates the heavy work to the use case.
             val result = withContext(ioDispatcher) { searchMovies(query) }
             when (result) {
                 is AppResult.Success -> _state.update {
